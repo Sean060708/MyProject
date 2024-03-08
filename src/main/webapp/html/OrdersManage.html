@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>訂單管理</title>
+</head>
+<body>
+    <h1>訂單管理</h1>
+    <form action="../OrdersManagement" method="post">
+        <label for="queryType">選擇查詢類型：</label>
+        <select name="queryType" id="queryType">
+            <option value="all">全部訂單</option>
+            <option value="byOrderId">按訂單編號查詢</option>
+            <option value="byDate">按日期範圍查詢</option>
+        </select>
+        <br><br>
+        <div id="orderIdInput" style="display: none;">
+            <label for="orderId">訂單編號：</label>
+            <input type="text" id="orderId" name="orderId">
+            <br><br>
+        </div>
+        <div id="dateRangeInput" style="display: none;">
+            <label for="startDate">開始日期：</label>
+            <input type="date" id="startDate" name="startDate">
+            <label for="endDate">結束日期：</label>
+            <input type="date" id="endDate" name="endDate">
+            <br><br>
+        </div>
+        <button type="submit">查詢</button>
+    </form>
+
+    <script>
+        document.getElementById("queryType").addEventListener("change", function() {
+            var selectedValue = this.value;
+            var orderIdInput = document.getElementById("orderIdInput");
+            var dateRangeInput = document.getElementById("dateRangeInput");
+
+            if (selectedValue === "byOrderId") {
+                orderIdInput.style.display = "block";
+                dateRangeInput.style.display = "none";
+            } else if (selectedValue === "byDate") {
+                orderIdInput.style.display = "none";
+                dateRangeInput.style.display = "block";
+            } else {
+                orderIdInput.style.display = "none";
+                dateRangeInput.style.display = "none";
+            }
+        });
+    </script>
+</body>
+</html>
